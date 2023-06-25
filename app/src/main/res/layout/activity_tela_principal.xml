@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/light_gray"
     android:orientation="vertical"
-    tools:context=".TelaPrincipal">
+    tools:context=".TelaPrincipalActivity">
 
     <TextView
         android:id="@+id/tv"
@@ -24,7 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginTop="80dp"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="40dp"
         android:layout_marginEnd="65dp"
         android:text="Alimento"
         android:textSize="18sp"
@@ -254,13 +254,15 @@
 
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/bt_Ircadastro"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_alignTop="@id/autoCompleteTextView6"
-        android:layout_marginTop="70dp"
         android:layout_alignParentEnd="true"
+        android:layout_marginTop="70dp"
         android:layout_marginEnd="5dp"
-        android:background="@drawable/green_add_circle"/>
+        android:background="@drawable/green_add_circle"
+        android:onClick="IrTelaCadastro" />
 
     <Button
         android:layout_width="match_parent"

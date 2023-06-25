@@ -8,15 +8,17 @@ import androidx.room.Query
 @Dao
 interface AlimentoDao {
 
-    @Query("SELECT * FROM tb_alimento")
-    fun getAll(): List<Alimento>
+    @Query("SELECT nome_alimento FROM tb_alimento")
+    suspend fun getAll(): List<String>
 
-    @Query("SELECT carboidrato_por_grama FROM tb_alimento WHERE nome_alimento = :nomeAlimento")
-    fun carboPorGrama(nomeAlimento: Alimento): Float
+    //@Query("SELECT carboidrato_por_grama FROM tb_alimento WHERE nome_alimento = :nomeAlimento")
+    //fun carboPorGrama(nomeAlimento: Alimento): String
 
     @Insert
-    fun insertAll(vararg alimento: Alimento)
+    suspend fun insert(vararg alimento: Alimento)
 
     @Delete
     fun delete(alimento: Alimento): Int
+
+    
 }
