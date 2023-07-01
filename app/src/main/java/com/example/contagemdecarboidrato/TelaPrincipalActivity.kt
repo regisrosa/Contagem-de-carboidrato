@@ -2,14 +2,18 @@ package com.example.contagemdecarboidrato
 
 import android.R
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
+import android.view.View
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import com.example.contagemdecarboidrato.databinding.ActivityTelaPrincipalBinding
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlin.math.roundToInt
 
 class TelaPrincipalActivity : AppCompatActivity() {
 
@@ -23,6 +27,8 @@ class TelaPrincipalActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         //------------IDENTIFICANDO OS ELEMENTOS DE TELA---------------------
+        val bt_Ircadastro = binding.btIrcadastro
+        val bt_calcular = binding.btCalcular
 
         val autoComplete1 = binding.autoCompleteTextView1
         val autoComplete2 = binding.autoCompleteTextView2
@@ -30,9 +36,12 @@ class TelaPrincipalActivity : AppCompatActivity() {
         val autoComplete4 = binding.autoCompleteTextView4
         val autoComplete5 = binding.autoCompleteTextView5
         val autoComplete6 = binding.autoCompleteTextView6
-
-        val bt_Ircadastro = binding.btIrcadastro
-        val bt_calcular = binding.btCalcular
+        autoComplete1.isEnabled = false
+        autoComplete2.isEnabled = false
+        autoComplete3.isEnabled = false
+        autoComplete4.isEnabled = false
+        autoComplete5.isEnabled = false
+        autoComplete6.isEnabled = false
 
         val et_1 = binding.et1
         val et_2 = binding.et2
@@ -40,6 +49,12 @@ class TelaPrincipalActivity : AppCompatActivity() {
         val et_4 = binding.et4
         val et_5 = binding.et5
         val et_6 = binding.et6
+        et_1.isEnabled = false
+        et_2.isEnabled = false
+        et_3.isEnabled = false
+        et_4.isEnabled = false
+        et_5.isEnabled = false
+        et_6.isEnabled = false
 
         val cb1 = binding.checkBox1
         val cb2 = binding.checkBox2
@@ -47,9 +62,74 @@ class TelaPrincipalActivity : AppCompatActivity() {
         val cb4 = binding.checkBox4
         val cb5 = binding.checkBox5
         val cb6 = binding.checkBox6
+        //----------------------------------------------------------------------
 
+        //-----Lógica para habilitar/desabilitar os campos de preenchimento-----
+        cb1.setOnClickListener {
+            if (cb1.isChecked) {
+                autoComplete1.isEnabled = true
+                et_1.isEnabled = true
+            } else {
+                autoComplete1.isEnabled = false
+                et_1.isEnabled = false
+            }
+        }
+
+        cb2.setOnClickListener {
+            if (cb2.isChecked) {
+                autoComplete2.isEnabled = true
+                et_2.isEnabled = true
+            } else {
+                autoComplete2.isEnabled = false
+                et_2.isEnabled = false
+            }
+        }
+
+        cb3.setOnClickListener {
+            if (cb3.isChecked) {
+                autoComplete3.isEnabled = true
+                et_3.isEnabled = true
+            } else {
+                autoComplete3.isEnabled = false
+                et_3.isEnabled = false
+            }
+        }
+
+        cb4.setOnClickListener {
+            if (cb4.isChecked) {
+                autoComplete4.isEnabled = true
+                et_4.isEnabled = true
+            } else {
+                autoComplete4.isEnabled = false
+                et_4.isEnabled = false
+            }
+        }
+
+        cb5.setOnClickListener {
+            if (cb5.isChecked) {
+                autoComplete5.isEnabled = true
+                et_5.isEnabled = true
+            } else {
+                autoComplete5.isEnabled = false
+                et_5.isEnabled = false
+            }
+        }
+
+        cb6.setOnClickListener {
+            if (cb6.isChecked) {
+                autoComplete6.isEnabled = true
+                et_6.isEnabled = true
+            } else {
+                autoComplete6.isEnabled = false
+                et_6.isEnabled = false
+            }
+
+        }
+        //-----------------------------------------------------------------
+
+        //-----Lógica do cardview customizado------------------
         var c_layout = binding.cLayout
-        c_layout.isVisible=false
+        c_layout.isVisible = false
         var tv_res = binding.tvRes
         var sair = binding.btSair
         //------------------------------------------------------
@@ -82,6 +162,7 @@ class TelaPrincipalActivity : AppCompatActivity() {
             autoComplete6.setAdapter(adapter)
         }
 
+
         bt_Ircadastro.setOnClickListener {
             val intent = Intent(this, CadastrarAlimentoActivity::class.java)
             startActivity(intent)
@@ -93,75 +174,104 @@ class TelaPrincipalActivity : AppCompatActivity() {
             var lista_resultados: ArrayList<Double> = arrayListOf()
 
             CoroutineScope(Dispatchers.Main).launch {
-                if (cb1.isChecked) {
-                    val alimento_1 = autoComplete1.text.toString()
-                    val valor_1 = db.alimentoDao().carboPorGrama(alimento_1)
-                    var carbo_1 = valor_1.toString().toDouble()
-                    var peso_1 = et_1.text.toString().toInt()
-                    val res1 = carbo_1 * peso_1
 
-                    lista_resultados.add(res1)
+                if (cb1.isChecked) {
+                    if (autoComplete1.text.toString() != "" && et_1.text.toString() != "") {
+                        val alimento_1 = autoComplete1.text.toString()
+                        val valor_1 = db.alimentoDao().carboPorGrama(alimento_1)
+                        var carbo_1 = valor_1.toString().toDouble()
+                        var peso_1 = et_1.text.toString().toInt()
+                        val res1 = carbo_1 * peso_1
+
+                        lista_resultados.add(res1)
+                    } else {
+                        snackbar(it)
+                    }
                 }
 
                 if (cb2.isChecked) {
-                    val alimento_2 = autoComplete2.text.toString()
-                    val valor_2 = db.alimentoDao().carboPorGrama(alimento_2)
-                    var carbo_2 = valor_2.toString().toDouble()
-                    var peso_2 = et_2.text.toString().toInt()
-                    val res2 = carbo_2 * peso_2
+                    if (autoComplete2.text.toString() != "" && et_2.text.toString() != "") {
+                        val alimento_2 = autoComplete2.text.toString()
+                        val valor_2 = db.alimentoDao().carboPorGrama(alimento_2)
+                        var carbo_2 = valor_2.toString().toDouble()
+                        var peso_2 = et_2.text.toString().toInt()
+                        val res2 = carbo_2 * peso_2
 
-                    lista_resultados.add(res2)
+                        lista_resultados.add(res2)
+                    } else {
+                        snackbar(it)
+                    }
+
                 }
 
                 if (cb3.isChecked) {
-                    val alimento_3 = autoComplete3.text.toString()
-                    val valor_3 = db.alimentoDao().carboPorGrama(alimento_3)
-                    var carbo_3 = valor_3.toString().toDouble()
-                    var peso_3 = et_3.text.toString().toInt()
-                    val res3 = carbo_3 * peso_3
+                    if (autoComplete3.text.toString() != "" && et_3.text.toString() != "") {
+                        val alimento_3 = autoComplete3.text.toString()
+                        val valor_3 = db.alimentoDao().carboPorGrama(alimento_3)
+                        var carbo_3 = valor_3.toString().toDouble()
+                        var peso_3 = et_3.text.toString().toInt()
+                        val res3 = carbo_3 * peso_3
 
-                    lista_resultados.add(res3)
+                        lista_resultados.add(res3)
+                    } else {
+                        snackbar(it)
+                    }
+
                 }
 
                 if (cb4.isChecked) {
-                    val alimento_4 = autoComplete4.text.toString()
-                    val valor_4 = db.alimentoDao().carboPorGrama(alimento_4)
-                    var carbo_4 = valor_4.toString().toDouble()
-                    var peso_4 = et_4.text.toString().toInt()
-                    val res4 = carbo_4 * peso_4
+                    if (autoComplete4.text.toString() != "" && et_4.text.toString() != "") {
+                        val alimento_4 = autoComplete4.text.toString()
+                        val valor_4 = db.alimentoDao().carboPorGrama(alimento_4)
+                        var carbo_4 = valor_4.toString().toDouble()
+                        var peso_4 = et_4.text.toString().toInt()
+                        val res4 = carbo_4 * peso_4
 
-                    lista_resultados.add(res4)
+                        lista_resultados.add(res4)
+                    } else {
+                        snackbar(it)
+                    }
+
                 }
 
                 if (cb5.isChecked) {
-                    val alimento_5 = autoComplete5.text.toString()
-                    val valor_5 = db.alimentoDao().carboPorGrama(alimento_5)
-                    var carbo_5 = valor_5.toString().toDouble()
-                    var peso_5 = et_5.text.toString().toInt()
-                    val res5 = carbo_5 * peso_5
+                    if (autoComplete5.text.toString() != "" && et_5.text.toString() != "") {
+                        val alimento_5 = autoComplete5.text.toString()
+                        val valor_5 = db.alimentoDao().carboPorGrama(alimento_5)
+                        var carbo_5 = valor_5.toString().toDouble()
+                        var peso_5 = et_5.text.toString().toInt()
+                        val res5 = carbo_5 * peso_5
 
-                    lista_resultados.add(res5)
+                        lista_resultados.add(res5)
+                    } else {
+                        snackbar(it)
+                    }
+
                 }
 
                 if (cb6.isChecked) {
-                    val alimento_6 = autoComplete6.text.toString()
-                    val valor_6 = db.alimentoDao().carboPorGrama(alimento_6)
-                    var carbo_6 = valor_6.toString().toDouble()
-                    var peso_6 = et_6.text.toString().toInt()
-                    val res6 = carbo_6 * peso_6
+                    if (autoComplete6.text.toString() != "" && et_6.text.toString() != "") {
+                        val alimento_6 = autoComplete6.text.toString()
+                        val valor_6 = db.alimentoDao().carboPorGrama(alimento_6)
+                        var carbo_6 = valor_6.toString().toDouble()
+                        var peso_6 = et_6.text.toString().toInt()
+                        val res6 = carbo_6 * peso_6
 
-                    lista_resultados.add(res6)
+                        lista_resultados.add(res6)
+                    } else {
+                        snackbar(it)
+                    }
+
                 }
-
 
                 lista_resultados.forEach {
                     res = it.plus(res)
                 }
 
-                c_layout.isVisible=true
-                tv_res.setText(res.toString())
+                c_layout.isVisible = true
+                tv_res.setText(res.roundToInt().toString() + " g")
                 sair.setOnClickListener {
-                    c_layout.isVisible=false
+                    c_layout.isVisible = false
                 }
 
             }
@@ -172,5 +282,10 @@ class TelaPrincipalActivity : AppCompatActivity() {
 
     }
 
+    fun snackbar(view: View) {
+
+        Snackbar.make(view, "Preencha todos os campos.", Snackbar.LENGTH_SHORT)
+            .setBackgroundTint(Color.RED).show()
+    }
 
 }
