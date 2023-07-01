@@ -5,7 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
-import androidx.room.Room
+import androidx.core.view.isVisible
 import com.example.contagemdecarboidrato.databinding.ActivityTelaPrincipalBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -16,16 +16,13 @@ class TelaPrincipalActivity : AppCompatActivity() {
     private lateinit var binding: ActivityTelaPrincipalBinding
     lateinit var db: AppDatabase
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityTelaPrincipalBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        db = Room.databaseBuilder(
-            applicationContext,
-            AppDatabase::class.java,
-            "carbo_por_grama_database"
-        ).build()
+        //------------IDENTIFICANDO OS ELEMENTOS DE TELA---------------------
 
         val autoComplete1 = binding.autoCompleteTextView1
         val autoComplete2 = binding.autoCompleteTextView2
@@ -33,10 +30,35 @@ class TelaPrincipalActivity : AppCompatActivity() {
         val autoComplete4 = binding.autoCompleteTextView4
         val autoComplete5 = binding.autoCompleteTextView5
         val autoComplete6 = binding.autoCompleteTextView6
+
         val bt_Ircadastro = binding.btIrcadastro
+        val bt_calcular = binding.btCalcular
+
+        val et_1 = binding.et1
+        val et_2 = binding.et2
+        val et_3 = binding.et3
+        val et_4 = binding.et4
+        val et_5 = binding.et5
+        val et_6 = binding.et6
+
+        val cb1 = binding.checkBox1
+        val cb2 = binding.checkBox2
+        val cb3 = binding.checkBox3
+        val cb4 = binding.checkBox4
+        val cb5 = binding.checkBox5
+        val cb6 = binding.checkBox6
+
+        var c_layout = binding.cLayout
+        c_layout.isVisible=false
+        var tv_res = binding.tvRes
+        var sair = binding.btSair
+        //------------------------------------------------------
+
+        db = AppDatabase.getDatabase(this)!!
 
         CoroutineScope(Dispatchers.Main).launch {
             //no DAO necessita de suspend fun, senão o aplicativo quebra
+
             val alimentos = db.alimentoDao().getAll()
 
             val adapter = ArrayAdapter(applicationContext, R.layout.select_dialog_item, alimentos)
@@ -65,6 +87,90 @@ class TelaPrincipalActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+
+        bt_calcular.setOnClickListener {
+            var res: Double = 0.0
+            var lista_resultados: ArrayList<Double> = arrayListOf()
+
+            CoroutineScope(Dispatchers.Main).launch {
+                if (cb1.isChecked) {
+                    val alimento_1 = autoComplete1.text.toString()
+                    val valor_1 = db.alimentoDao().carboPorGrama(alimento_1)
+                    var carbo_1 = valor_1.toString().toDouble()
+                    var peso_1 = et_1.text.toString().toInt()
+                    val res1 = carbo_1 * peso_1
+
+                    lista_resultados.add(res1)
+                }
+
+                if (cb2.isChecked) {
+                    val alimento_2 = autoComplete2.text.toString()
+                    val valor_2 = db.alimentoDao().carboPorGrama(alimento_2)
+                    var carbo_2 = valor_2.toString().toDouble()
+                    var peso_2 = et_2.text.toString().toInt()
+                    val res2 = carbo_2 * peso_2
+
+                    lista_resultados.add(res2)
+                }
+
+                if (cb3.isChecked) {
+                    val alimento_3 = autoComplete3.text.toString()
+                    val valor_3 = db.alimentoDao().carboPorGrama(alimento_3)
+                    var carbo_3 = valor_3.toString().toDouble()
+                    var peso_3 = et_3.text.toString().toInt()
+                    val res3 = carbo_3 * peso_3
+
+                    lista_resultados.add(res3)
+                }
+
+                if (cb4.isChecked) {
+                    val alimento_4 = autoComplete4.text.toString()
+                    val valor_4 = db.alimentoDao().carboPorGrama(alimento_4)
+                    var carbo_4 = valor_4.toString().toDouble()
+                    var peso_4 = et_4.text.toString().toInt()
+                    val res4 = carbo_4 * peso_4
+
+                    lista_resultados.add(res4)
+                }
+
+                if (cb5.isChecked) {
+                    val alimento_5 = autoComplete5.text.toString()
+                    val valor_5 = db.alimentoDao().carboPorGrama(alimento_5)
+                    var carbo_5 = valor_5.toString().toDouble()
+                    var peso_5 = et_5.text.toString().toInt()
+                    val res5 = carbo_5 * peso_5
+
+                    lista_resultados.add(res5)
+                }
+
+                if (cb6.isChecked) {
+                    val alimento_6 = autoComplete6.text.toString()
+                    val valor_6 = db.alimentoDao().carboPorGrama(alimento_6)
+                    var carbo_6 = valor_6.toString().toDouble()
+                    var peso_6 = et_6.text.toString().toInt()
+                    val res6 = carbo_6 * peso_6
+
+                    lista_resultados.add(res6)
+                }
+
+
+                lista_resultados.forEach {
+                    res = it.plus(res)
+                }
+
+                c_layout.isVisible=true
+                tv_res.setText(res.toString())
+                sair.setOnClickListener {
+                    c_layout.isVisible=false
+                }
+
+            }
+
+
+        }
+
+
     }
+
 
 }

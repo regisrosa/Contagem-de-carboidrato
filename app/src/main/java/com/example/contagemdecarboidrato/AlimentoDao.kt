@@ -11,8 +11,8 @@ interface AlimentoDao {
     @Query("SELECT nome_alimento FROM tb_alimento")
     suspend fun getAll(): List<String>
 
-    //@Query("SELECT carboidrato_por_grama FROM tb_alimento WHERE nome_alimento = :nomeAlimento")
-    //fun carboPorGrama(nomeAlimento: Alimento): String
+    @Query("SELECT carboidrato_por_grama FROM tb_alimento WHERE nome_alimento = :nomeAlimento")
+    suspend fun carboPorGrama(nomeAlimento: String): String
 
     @Insert
     suspend fun insert(vararg alimento: Alimento)

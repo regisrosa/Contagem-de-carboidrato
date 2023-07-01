@@ -1,19 +1,18 @@
 package com.example.contagemdecarboidrato
 
 
+import android.content.Context
 import androidx.room.Database
+import androidx.room.Room
 import androidx.room.RoomDatabase
 
 
-@Database(entities = [Alimento::class], version = 1, exportSchema = false)
+@Database(entities = [Alimento::class], version = 1, exportSchema = true)
 abstract class AppDatabase: RoomDatabase() {
     abstract fun alimentoDao(): AlimentoDao
 
-    //resolvi não usar este trecho de código , pois atrapalharia a finalidade deste app
-    /*
     companion object {
-        // Singleton prevents multiple instances of database opening at the
-        // same time.
+        // Singleton prevents multiple instances of database opening at the same time.
         @Volatile
         private var INSTANCE: AppDatabase? = null
 
@@ -26,8 +25,8 @@ abstract class AppDatabase: RoomDatabase() {
                     instance = Room.databaseBuilder(
                         context.applicationContext,
                         AppDatabase::class.java,
-                        "carbo_por_grama_database"
-                    ).build()
+                        "my_db"
+                    ).createFromAsset("database/my_db.db").build()
 
                     INSTANCE = instance
                 }
@@ -37,7 +36,6 @@ abstract class AppDatabase: RoomDatabase() {
 
     }
 
-     */
 
 }
 
