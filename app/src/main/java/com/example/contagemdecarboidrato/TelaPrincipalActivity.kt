@@ -42,6 +42,12 @@ class TelaPrincipalActivity : AppCompatActivity() {
         autoComplete4.isEnabled = false
         autoComplete5.isEnabled = false
         autoComplete6.isEnabled = false
+        autoComplete1.setHint("Clique no checkbox")
+        autoComplete2.setHint("Clique no checkbox")
+        autoComplete3.setHint("Clique no checkbox")
+        autoComplete4.setHint("Clique no checkbox")
+        autoComplete5.setHint("Clique no checkbox")
+        autoComplete6.setHint("Clique no checkbox")
 
         val et_1 = binding.et1
         val et_2 = binding.et2
@@ -68,9 +74,11 @@ class TelaPrincipalActivity : AppCompatActivity() {
         cb1.setOnClickListener {
             if (cb1.isChecked) {
                 autoComplete1.isEnabled = true
+                autoComplete1.setHint("Nome do alimento")
                 et_1.isEnabled = true
             } else {
                 autoComplete1.isEnabled = false
+                autoComplete1.setHint("Clique no checkbox")
                 et_1.isEnabled = false
             }
         }
@@ -78,9 +86,11 @@ class TelaPrincipalActivity : AppCompatActivity() {
         cb2.setOnClickListener {
             if (cb2.isChecked) {
                 autoComplete2.isEnabled = true
+                autoComplete2.setHint("Nome do alimento")
                 et_2.isEnabled = true
             } else {
                 autoComplete2.isEnabled = false
+                autoComplete2.setHint("Clique no checkbox")
                 et_2.isEnabled = false
             }
         }
@@ -88,9 +98,11 @@ class TelaPrincipalActivity : AppCompatActivity() {
         cb3.setOnClickListener {
             if (cb3.isChecked) {
                 autoComplete3.isEnabled = true
+                autoComplete3.setHint("Nome do alimento")
                 et_3.isEnabled = true
             } else {
                 autoComplete3.isEnabled = false
+                autoComplete3.setHint("Clique no checkbox")
                 et_3.isEnabled = false
             }
         }
@@ -98,9 +110,11 @@ class TelaPrincipalActivity : AppCompatActivity() {
         cb4.setOnClickListener {
             if (cb4.isChecked) {
                 autoComplete4.isEnabled = true
+                autoComplete4.setHint("Nome do alimento")
                 et_4.isEnabled = true
             } else {
                 autoComplete4.isEnabled = false
+                autoComplete4.setHint("Clique no checkbox")
                 et_4.isEnabled = false
             }
         }
@@ -108,9 +122,11 @@ class TelaPrincipalActivity : AppCompatActivity() {
         cb5.setOnClickListener {
             if (cb5.isChecked) {
                 autoComplete5.isEnabled = true
+                autoComplete5.setHint("Nome do alimento")
                 et_5.isEnabled = true
             } else {
                 autoComplete5.isEnabled = false
+                autoComplete5.setHint("Clique no checkbox")
                 et_5.isEnabled = false
             }
         }
@@ -118,9 +134,11 @@ class TelaPrincipalActivity : AppCompatActivity() {
         cb6.setOnClickListener {
             if (cb6.isChecked) {
                 autoComplete6.isEnabled = true
+                autoComplete6.setHint("Nome do alimento")
                 et_6.isEnabled = true
             } else {
                 autoComplete6.isEnabled = false
+                autoComplete6.setHint("Clique no checkbox")
                 et_6.isEnabled = false
             }
 
@@ -284,7 +302,7 @@ class TelaPrincipalActivity : AppCompatActivity() {
 
     fun snackbar(view: View) {
 
-        Snackbar.make(view, "Preencha todos os campos.", Snackbar.LENGTH_SHORT)
+        Snackbar.make(view, "Preencha todos os campos da linha.", Snackbar.LENGTH_SHORT)
             .setBackgroundTint(Color.RED).show()
     }
 
