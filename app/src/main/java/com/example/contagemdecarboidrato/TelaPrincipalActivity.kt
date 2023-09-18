@@ -20,7 +20,6 @@ class TelaPrincipalActivity : AppCompatActivity() {
     private lateinit var binding: ActivityTelaPrincipalBinding
     lateinit var db: AppDatabase
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityTelaPrincipalBinding.inflate(layoutInflater)
@@ -305,5 +304,11 @@ class TelaPrincipalActivity : AppCompatActivity() {
         Snackbar.make(view, "Preencha todos os campos da linha.", Snackbar.LENGTH_SHORT)
             .setBackgroundTint(Color.RED).show()
     }
+
+    fun irCorrigir(view: View){
+        val intent = Intent(this, CorrigirActivity::class.java)
+        startActivity(intent)
+    }
+
 
 }

@@ -2,4 +2,10 @@
     <string name="app_name">Contagem de carboidrato</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="explicacao">Para calcular o carboidrato por grama veja no verso da embalagem do alimento ou pegue
+    uma tabela nutricional de confiança e divida o valor do <b>carboidrato</b>  pelo <b>peso</b> da porção.
+        \n\nPor exemplo, se na embalagem diz que 100g de algum alimento tem 80g de carboidrato então
+        divida 80 por 100 e terá o resultado. </string>
+
 </resources>

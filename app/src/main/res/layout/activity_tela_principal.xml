@@ -66,6 +66,8 @@
         android:background="@drawable/customizacao_labels"
         android:padding="10dp" />
 
+
+
     <EditText
         android:id="@+id/et1"
         android:layout_width="45dp"
@@ -75,6 +77,7 @@
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="10dp"
         android:textAlignment="center"
+        android:inputType="numberDecimal"
         android:background="@drawable/customizacao_labels"/>
 
     <CheckBox
@@ -97,6 +100,7 @@
         android:background="@drawable/customizacao_labels"
         android:padding="10dp" />
 
+
     <EditText
         android:id="@+id/et2"
         android:layout_width="45dp"
@@ -106,6 +110,7 @@
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="10dp"
         android:textAlignment="center"
+        android:inputType="numberDecimal"
         android:background="@drawable/customizacao_labels"/>
 
 
@@ -129,6 +134,7 @@
         android:background="@drawable/customizacao_labels"
         android:padding="10dp" />
 
+
     <EditText
         android:id="@+id/et3"
         android:layout_width="45dp"
@@ -138,6 +144,7 @@
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="10dp"
         android:textAlignment="center"
+        android:inputType="numberDecimal"
         android:background="@drawable/customizacao_labels"/>
 
 
@@ -161,6 +168,7 @@
         android:background="@drawable/customizacao_labels"
         android:padding="10dp" />
 
+
     <EditText
         android:id="@+id/et4"
         android:layout_width="45dp"
@@ -170,6 +178,7 @@
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="10dp"
         android:textAlignment="center"
+        android:inputType="numberDecimal"
         android:background="@drawable/customizacao_labels"/>
 
 
@@ -193,6 +202,7 @@
         android:background="@drawable/customizacao_labels"
         android:padding="10dp" />
 
+
     <EditText
         android:id="@+id/et5"
         android:layout_width="45dp"
@@ -202,6 +212,7 @@
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="10dp"
         android:textAlignment="center"
+        android:inputType="numberDecimal"
         android:background="@drawable/customizacao_labels"/>
 
 
@@ -225,6 +236,7 @@
         android:background="@drawable/customizacao_labels"
         android:padding="10dp" />
 
+
     <EditText
         android:id="@+id/et6"
         android:layout_width="45dp"
@@ -234,6 +246,7 @@
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="10dp"
         android:textAlignment="center"
+        android:inputType="numberDecimal"
         android:background="@drawable/customizacao_labels"/>
 
     <TextView
@@ -258,6 +271,17 @@
         android:layout_marginEnd="5dp"
         android:background="@drawable/green_add_circle"
         android:onClick="IrTelaCadastro" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/lapis"
+        android:layout_width="40dp"
+        android:layout_height="48dp"
+        android:layout_alignTop="@id/bt_Ircadastro"
+        android:layout_marginTop="70dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="5dp"
+        android:background="@drawable/corrigir"
+        android:onClick="irCorrigir" />
 
 
     <Button
@@ -284,7 +308,7 @@
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Carboidratos totais"
+            android:text="TOTAL DE CARBOIDRATOS"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"

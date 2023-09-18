@@ -13,6 +13,9 @@
         android:theme="@style/Theme.ContagemDeCarboidrato"
         tools:targetApi="31">
         <activity
+            android:name=".CorrigirActivity"
+            android:exported="false" />
+        <activity
             android:name=".CadastrarAlimentoActivity"
             android:exported="false" />
         <activity

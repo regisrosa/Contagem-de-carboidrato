@@ -9,16 +9,15 @@ import org.jetbrains.annotations.NotNull
 class Alimento(
 
     @PrimaryKey(autoGenerate = true)
-    val id: Int,
+    var id: Int,
 
     @ColumnInfo(name = "nome_alimento")
     @NotNull
-    val nomeAlimento: String,
+    var nomeAlimento: String,
 
     @ColumnInfo(name = "carboidrato_por_grama")
     @NotNull
-    val carboPorGrama: String
-
+    var carboPorGrama: String
 
 )
 
