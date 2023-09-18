@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/customizacao_background"
+    tools:context=".CorrigirActivity">
+
+    <TextView
+        android:id="@+id/tv1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Buscar alimento por nome"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginTop="30dp"
+        android:gravity="center"/>
+
+    <AutoCompleteTextView
+        android:id="@+id/ac_buscar_nome"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:hint="Escreva o nome do alimento sem acentos"
+        android:padding="10dp"
+        android:textSize="18sp"
+        android:layout_alignTop="@id/tv1"
+        android:layout_marginTop="70dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/customizacao_labels"/>
+
+
+    <Button
+        android:id="@+id/bt_buscar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignTop="@id/ac_buscar_nome"
+        android:layout_marginTop="70dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginEnd="80dp"
+        android:text="Buscar"
+        android:textSize="20sp" />
+
+
+    <EditText
+        android:id="@+id/et_corrigir_nome"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:hint=""
+        android:padding="10dp"
+        android:textSize="18sp"
+        android:layout_alignTop="@id/bt_buscar"
+        android:layout_marginTop="200dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/customizacao_labels"/>
+
+    <EditText
+        android:id="@+id/et_corrigir_carbo"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:hint=""
+        android:padding="10dp"
+        android:textSize="18sp"
+        android:inputType="numberDecimal"
+        android:layout_alignTop="@id/et_corrigir_nome"
+        android:layout_marginTop="70dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/customizacao_labels"/>
+
+
+
+    <Button
+        android:id="@+id/bt_corrigir"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:onClick="corrigir"
+        android:text="Corrigir"
+        android:textSize="20sp" />
+
+</RelativeLayout>
